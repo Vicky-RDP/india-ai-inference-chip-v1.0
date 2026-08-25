@@ -1,6 +1,6 @@
-const githubUrl = 'https://github.com/Vicky-RDP/india-inference-chip';
-const blueprintUrl = 'https://github.com/Vicky-RDP/india-inference-chip/blob/main/docs/project-blueprint.md';
-const roadmapUrl = 'https://github.com/Vicky-RDP/india-inference-chip/blob/main/docs/tapeout-roadmap.md';
+const githubUrl = 'https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0';
+const blueprintUrl = 'https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0/blob/main/docs/project-blueprint.md';
+const roadmapUrl = 'https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0/blob/main/docs/tapeout-roadmap.md';
 
 const principles = [
   { number: '01', title: 'Inference is where AI becomes real', copy: 'Every camera, robot, vehicle, device and service will need to run intelligence continuously, close to the world it is observing.' },

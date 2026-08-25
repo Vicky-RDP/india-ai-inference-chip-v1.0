@@ -97,7 +97,7 @@ Before an ASIC tape-out, the community will review whether a dual-license or har
 - Security reports: [SECURITY.md](SECURITY.md)
 - Governance: [GOVERNANCE.md](GOVERNANCE.md)
 - Contributor expectations: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- Join a workstream: open the [contributor form](https://github.com/Vicky-RDP/india-inference-chip/issues/new?template=volunteer.yml)
+- Join a workstream: open the [contributor form](https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0/issues/new?template=volunteer.yml)
 
 ## Invitation
 
