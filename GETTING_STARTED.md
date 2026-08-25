@@ -1,6 +1,6 @@
 # Getting Started
 
-Welcome. This guide is for your first contribution to India Inference Chip.
+Welcome. This guide is for your first contribution to India AI Inference Chip v1.0.
 
 ## 1. Set up the tools
 
@@ -27,8 +27,8 @@ sudo apt-get install python3 make iverilog
 ## 2. Clone and test
 
 ```bash
-git clone https://github.com/Vicky-RDP/india-inference-chip.git
-cd india-inference-chip
+git clone https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0.git
+cd india-ai-inference-chip-v1.0
 make reference
 make test
 ```

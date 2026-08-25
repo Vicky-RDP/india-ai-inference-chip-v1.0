@@ -1,6 +1,6 @@
-# Contributing to India Inference Chip
+# Contributing to India AI Inference Chip v1.0
 
-Thank you for helping build open AI hardware from India for the world. Contributors from every country and experience level are welcome.
+Thank you for helping build India AI Inference Chip v1.0 — open AI hardware from India for the world. Contributors from every country and experience level are welcome.
 
 ## Before opening a pull request
 

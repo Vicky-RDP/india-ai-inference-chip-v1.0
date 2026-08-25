@@ -1,8 +1,8 @@
-# India Inference Chip
+# India AI Inference Chip v1.0
 
 ## India needs its own AI inference chip. Let’s build it in the open.
 
-India Inference Chip (IIC) is a global open-source hardware and software project to develop efficient AI inference silicon originating from India.
+India AI Inference Chip v1.0 (IAIC v1.0) is a global open-source hardware and software project to develop efficient AI inference silicon originating from India.
 
 We believe the fastest path is collaboration: publish the architecture, RTL, verification, compiler, firmware, benchmarks, and design decisions so developers everywhere can study them, improve them, and build on them.
 

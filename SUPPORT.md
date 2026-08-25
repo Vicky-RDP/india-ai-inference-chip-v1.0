@@ -1,6 +1,6 @@
 # Support
 
-India Inference Chip is a community project. The fastest way to get help is to provide a reproducible question.
+India AI Inference Chip v1.0 is a community project. The fastest way to get help is to provide a reproducible question.
 
 ## Where to ask
 

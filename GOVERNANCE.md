@@ -1,6 +1,6 @@
 # Governance
 
-India Inference Chip is an open project with a transparent, merit-oriented decision process.
+India AI Inference Chip v1.0 is an open project with a transparent, merit-oriented decision process.
 
 ## Roles
 

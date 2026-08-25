@@ -8,7 +8,7 @@ The `main` branch is the actively supported development line. Development snapsh
 
 Do not open a public issue for a suspected security vulnerability, private key, credential, or sensitive disclosure.
 
-Use GitHub’s private security advisory workflow when available. If it is not available, contact the repository maintainer through the private contact method on the [@Vicky-RDP GitHub profile](https://github.com/Vicky-RDP) and include `India Inference Chip security report` in the subject.
+Use GitHub’s private security advisory workflow when available. If it is not available, contact the repository maintainer through the private contact method on the [@Vicky-RDP GitHub profile](https://github.com/Vicky-RDP) and include `India AI Inference Chip v1.0 security report` in the subject.
 
 Please include:
 
