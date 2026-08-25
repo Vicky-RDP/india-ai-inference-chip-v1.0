@@ -58,6 +58,10 @@ This is an early project. It is not yet production silicon, a commercial product
 4. Look for issues labelled `good first issue`, `help wanted`, or `design discussion`.
 5. Open an issue before a substantial change so the community can align early.
 
+The project blueprint lives in [docs/project-blueprint.md](docs/project-blueprint.md).
+The execution plan for the first tapeout is [docs/tapeout-roadmap.md](docs/tapeout-roadmap.md),
+and the public operating rules are in [docs/maintainer-playbook.md](docs/maintainer-playbook.md).
+
 You do not need to be an expert in chip design to help. Documentation, verification, Python tooling, compiler work, benchmarks, FPGA integration, and thoughtful review are all first-class contributions.
 
 ## Repository map
@@ -68,6 +72,7 @@ tb/                     RTL testbenches
 tools/                  Reference models and developer utilities
 docs/                   Architecture, roadmap, workstreams, and decisions
 .github/                CI, issue forms, pull request guidance, and ownership
+website/                Public project website and deployment source
 ```
 
 ## Project principles
@@ -92,6 +97,7 @@ Before an ASIC tape-out, the community will review whether a dual-license or har
 - Security reports: [SECURITY.md](SECURITY.md)
 - Governance: [GOVERNANCE.md](GOVERNANCE.md)
 - Contributor expectations: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- Join a workstream: open the [contributor form](https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0/issues/new?template=volunteer.yml)
 
 ## Invitation
 

@@ -1,2 +1,11 @@
 # Default review owner. Workstream maintainers can be added as the project grows.
 * @Vicky-RDP
+
+# Until workstream teams are formed, the project steward is the accountable
+# reviewer. These boundaries make future team ownership explicit.
+/rtl/ @Vicky-RDP
+/tb/ @Vicky-RDP
+/tools/ @Vicky-RDP
+/docs/ @Vicky-RDP
+/.github/ @Vicky-RDP
+/website/ @Vicky-RDP

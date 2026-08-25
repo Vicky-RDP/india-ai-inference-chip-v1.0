@@ -18,6 +18,12 @@ The first hardware milestone is a portable INT8 dot-product primitive. It is not
 
 The lane count is a parameter so the same RTL can be used for a small educational FPGA target or a larger accelerator tile.
 
+rtl/ii_dot_product_stream.sv adds the first software- and system-facing
+ready/valid wrapper. It has one output entry, accepts a new request whenever
+the output is empty or consumed, and holds result stable while downstream
+backpressure is asserted. The corresponding testbench covers reset, signed edge
+values, acceptance, and a stalled consumer.
+
 ## Next architectural steps
 
 1. Add a streaming input interface and backpressure.

@@ -1,0 +1,26 @@
+name: Community hygiene
+
+on:
+  schedule:
+    - cron: '17 2 * * 1'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: \${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 45
+          days-before-close: 14
+          stale-issue-message: 'This issue has had no activity for 45 days. It will close in 14 days if it is no longer relevant; comment with an update to keep it open.'
+          stale-pr-message: 'This pull request has had no activity for 45 days. Please rebase or leave a status update; it will close in 14 days without activity.'
+          close-issue-message: 'Closing for now due to inactivity. Please reopen or create a fresh issue when there is new evidence or a clear next step.'
+          exempt-issue-labels: 'tapeout-critical,blocked,security'
+          exempt-pr-labels: 'tapeout-critical,blocked,security'
+
