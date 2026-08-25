@@ -1,0 +1,39 @@
+# Canonical label catalogue. Apply these in repository settings or with:
+# gh label create <name> --color <hex> --description <description>
+- name: area:architecture
+  color: 1d4ed8
+  description: Architecture, contracts, and design decisions
+- name: area:rtl
+  color: 7c3aed
+  description: Synthesizable RTL and hardware behavior
+- name: area:verification
+  color: 9333ea
+  description: Simulation, formal, lint, and test infrastructure
+- name: area:fpga-asic
+  color: 0f766e
+  description: FPGA, synthesis, physical design, and tapeout
+- name: area:software
+  color: 0369a1
+  description: Firmware, compiler, runtime, or driver work
+- name: area:community
+  color: 15803d
+  description: Documentation, onboarding, and community operations
+- name: good first issue
+  color: 7057ff
+  description: A well-scoped first contribution
+- name: help wanted
+  color: 008672
+  description: Maintainers welcome community help
+- name: needs-triage
+  color: fbca04
+  description: New item awaiting maintainer triage
+- name: blocked
+  color: d93f0b
+  description: Waiting on a dependency or decision
+- name: tapeout-critical
+  color: b60205
+  description: On the critical path to the first tapeout
+- name: design discussion
+  color: cfd3d7
+  description: Needs public technical discussion before implementation
+

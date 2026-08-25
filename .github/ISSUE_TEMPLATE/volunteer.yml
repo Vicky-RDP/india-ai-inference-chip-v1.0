@@ -1,0 +1,44 @@
+name: Join a workstream
+description: Tell the maintainers how you would like to contribute.
+title: "[Contributor]: "
+labels: [help wanted, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome. This is a public project and you do not need prior chip-tapeout experience to start.
+  - type: input
+    id: timezone
+    attributes:
+      label: Time zone and availability
+      placeholder: UTC+5:30, 3–5 hours/week
+    validations:
+      required: true
+  - type: checkboxes
+    id: workstreams
+    attributes:
+      label: Workstream interests
+      options:
+        - label: Architecture and numeric contracts
+        - label: RTL and verification
+        - label: FPGA, ASIC, or physical design
+        - label: Firmware, RISC-V, compiler, or runtime
+        - label: Benchmarks and applications
+        - label: Documentation and community
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What would you like to build?
+      description: Link public work if useful, but beginners are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: first-task
+    attributes:
+      label: A first task you could take
+      placeholder: I can add randomized tests for...
+    validations:
+      required: true
+
