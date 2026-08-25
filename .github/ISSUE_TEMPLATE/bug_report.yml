@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible problem in RTL, tools, documentation, or infrastructure.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us make the project reproducible.
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or branch
+      placeholder: main / abc1234
+    validations:
+      required: true
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      options:
+        - Hardware architecture
+        - RTL and verification
+        - FPGA or ASIC flow
+        - Compiler or runtime
+        - Firmware or RISC-V integration
+        - Benchmarks or applications
+        - Documentation or community
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include exact commands, inputs, and tool versions.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or waveforms
+      render: text

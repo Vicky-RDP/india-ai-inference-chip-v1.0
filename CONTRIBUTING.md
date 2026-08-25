@@ -1,6 +1,6 @@
 # Contributing to India Inference Chip
 
-Thank you for helping build open AI hardware.
+Thank you for helping build open AI hardware from India for the world. Contributors from every country and experience level are welcome.
 
 ## Before opening a pull request
 
@@ -9,6 +9,10 @@ Thank you for helping build open AI hardware.
 3. Run `make test` locally when a simulator is available.
 4. Keep synthesizable RTL separate from testbench-only code.
 5. Document interface, numeric-width, and latency changes.
+
+You do not need permission to start improving documentation, tests, tooling, benchmarks, or a proposed design. For substantial architectural work, open an issue or discussion first so others can join the design conversation.
+
+There is no contributor nationality, employer, or membership requirement. Contributions are made under the repository licence; a separate CLA is not required at this stage.
 
 ## Design principles
 

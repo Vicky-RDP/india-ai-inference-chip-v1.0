@@ -1,0 +1,30 @@
+name: Feature or design proposal
+description: Propose a measurable improvement to the chip or its ecosystem.
+title: "[Proposal]: "
+labels: [design discussion]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and users
+      description: Who needs this and what is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: Describe interfaces, assumptions, and alternatives considered.
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: State measurable correctness, performance, power, cost, or usability goals.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and open questions

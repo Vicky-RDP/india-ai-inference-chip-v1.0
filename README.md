@@ -1,68 +1,98 @@
 # India Inference Chip
 
-An open-source hardware and software project for efficient AI inference, designed and developed in India.
+## India needs its own AI inference chip. Let’s build it in the open.
 
-## Project goal
+India Inference Chip (IIC) is a global open-source hardware and software project to develop efficient AI inference silicon originating from India.
 
-India Inference Chip (IIC) aims to make practical AI inference hardware accessible to students, researchers, startups, and embedded-systems builders. The project will develop a reproducible path from open RTL and software to an FPGA prototype and, eventually, an open ASIC implementation.
+We believe the fastest path is collaboration: publish the architecture, RTL, verification, compiler, firmware, benchmarks, and design decisions so developers everywhere can study them, improve them, and build on them.
 
-The first milestone is intentionally narrow: a verified signed INT8 dot-product engine that can become the compute primitive for convolution and transformer workloads.
+Indian developers, researchers, students, startups, universities, hardware engineers, software engineers, and contributors from every country are invited to participate from today.
 
-## v0 architecture
+## What we are building
+
+The project will progress from a small, verifiable accelerator to a complete inference platform:
 
 ```text
-                 +----------------------+
-                 | RISC-V host / driver |
-                 +----------+-----------+
-                            |
-                       control + DMA
-                            |
-                 +----------v-----------+
-                 | INT8 inference core |
-                 | 16-lane dot product  |
-                 +----------+-----------+
-                            |
-                       scratchpad SRAM
+models and applications
+          |
+compiler + runtime + drivers
+          |
+RISC-V host + inference accelerator
+          |
+FPGA prototype -> open ASIC implementation -> developer hardware
 ```
 
-The v0 design targets:
+The first milestone is a portable signed INT8 dot-product engine. It is deliberately small so that contributors can get started immediately while we build toward tiled matrix multiplication, memory systems, model tooling, and eventually a fabricated chip.
+
+## Why open source?
+
+- More people can review correctness, security, and performance.
+- Universities and startups can learn from and extend the design.
+- Hardware, software, compiler, and applications can evolve together.
+- Contributors can work from India or anywhere else in the world.
+- Every important result should be reproducible from public source.
+
+## Current v0 target
 
 - Signed INT8 activations and weights
 - 32-bit accumulation
-- Parameterized lane count, defaulting to 16
-- One-cycle result latency after accepting an input vector
-- FPGA-friendly synchronous RTL
-- A software reference model for bit-accurate testing
+- Parameterized 16-lane dot-product core
+- Portable SystemVerilog RTL
+- Self-checking RTL testbench
+- Python bit-accurate reference model
+- FPGA-first development, followed by an open ASIC path
 
-## Repository layout
+This is an early project. It is not yet production silicon, a commercial product, or a claim of competitive performance. We will earn those claims through open benchmarks and reproducible evidence.
+
+## Start contributing today
+
+1. Read [GETTING_STARTED.md](GETTING_STARTED.md).
+2. Run the reference model and RTL testbench:
+
+   ```bash
+   make reference
+   make test
+   ```
+
+3. Choose a workstream in [docs/workstreams.md](docs/workstreams.md).
+4. Look for issues labelled `good first issue`, `help wanted`, or `design discussion`.
+5. Open an issue before a substantial change so the community can align early.
+
+You do not need to be an expert in chip design to help. Documentation, verification, Python tooling, compiler work, benchmarks, FPGA integration, and thoughtful review are all first-class contributions.
+
+## Repository map
 
 ```text
 rtl/                    Synthesizable SystemVerilog
 tb/                     RTL testbenches
 tools/                  Reference models and developer utilities
-docs/                   Architecture and project documentation
-.github/workflows/      Continuous integration
+docs/                   Architecture, roadmap, workstreams, and decisions
+.github/                CI, issue forms, pull request guidance, and ownership
 ```
 
-## Quick start
+## Project principles
 
-Install a SystemVerilog simulator such as Icarus Verilog or Verilator, then run:
-
-```bash
-make test
-python3 tools/reference_model.py
-```
-
-The RTL testbench is intentionally self-contained and does not require a proprietary EDA tool.
-
-## Current status
-
-This repository is at the bring-up stage. The first useful contributions are RTL tests, synthesis reports, FPGA targets, and a clear software interface. See [docs/roadmap.md](docs/roadmap.md) for the planned milestones.
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. Design discussions should include measurable targets and reproducible test cases.
+1. Open by default: designs, interfaces, measurements, and decisions belong in public artifacts.
+2. Reproducible by default: include test vectors, scripts, tool versions, and measurement context.
+3. Portable by default: keep the core usable across open tools and FPGA targets.
+4. Evidence over hype: publish limitations as clearly as successes.
+5. Welcoming by default: global contributors should be able to participate without insider context.
+6. Safety matters: do not publish secrets, private data, or instructions that create avoidable harm.
 
 ## License
 
-The initial repository is released under Apache License 2.0. Before an ASIC tape-out, the hardware licensing model will be reviewed with contributors; CERN-OHL-S-2.0 is a candidate for a future hardware-specific licence. See [LICENSE](LICENSE).
+The initial project is released under the permissive [Apache License 2.0](LICENSE), including hardware source, software, documentation, and test material unless a file states otherwise. Apache-2.0 is intentional: contributors and downstream users should be able to study, modify, manufacture, integrate, and commercialize the work while preserving attribution and patent protections.
+
+Before an ASIC tape-out, the community will review whether a dual-license or hardware-specific licence improves protection for contributors without reducing adoption. No change will be made without a public decision and migration plan.
+
+## Community
+
+- Questions and design discussions: GitHub Issues and Discussions
+- Proposed changes: Pull Requests
+- Security reports: [SECURITY.md](SECURITY.md)
+- Governance: [GOVERNANCE.md](GOVERNANCE.md)
+- Contributor expectations: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
+## Invitation
+
+If you care about open hardware, AI, RISC-V, semiconductors, education, or India’s technology independence, join us. Star the repository, introduce yourself in a discussion, pick an issue, or open a proposal. The project starts with a small core, but its success depends on a worldwide community building the full stack together.

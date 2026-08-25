@@ -1,5 +1,14 @@
 # Roadmap
 
+The roadmap is intentionally public and adjustable. Issues and design discussions are the source of truth for detailed work.
+
+## Starting today
+
+- Invite contributors worldwide through GitHub Issues and Discussions.
+- Make the first RTL, testbench, and reference model easy to run.
+- Turn the dot-product primitive into a documented streaming block.
+- Establish reproducible measurements before making performance claims.
+
 ## Milestone 0 — repository bring-up
 
 - [x] Establish open-source repository structure

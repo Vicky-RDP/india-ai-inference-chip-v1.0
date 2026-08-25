@@ -1,0 +1,31 @@
+name: Hardware work proposal
+description: Propose RTL, verification, FPGA, ASIC, or physical-design work.
+title: "[Hardware]: "
+labels: [hardware, help wanted]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - RTL
+        - Verification
+        - FPGA integration
+        - ASIC flow
+        - Memory system
+        - RISC-V integration
+        - Physical design
+    validations:
+      required: true
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: Proposed deliverable
+      description: What public artifact should exist when this work is complete?
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and tools
+      description: Include boards, simulators, PDKs, licenses, or unavailable equipment.
