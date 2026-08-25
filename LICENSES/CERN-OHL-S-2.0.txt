@@ -1,0 +1,7 @@
+CERN OPEN HARDWARE LICENCE Version 2 - Strongly Reciprocal (reference)
+
+This file records the candidate hardware licence for future ASIC releases. The initial repository is released under Apache License 2.0; no file in the initial repository is licensed under CERN-OHL-S-2.0. The complete licence text is maintained at:
+
+https://ohwr.org/cern_ohl_s_v2.txt
+
+Until the project has completed its formal licence review, this notice identifies the intended hardware licence. Contributions must be compatible with CERN-OHL-S-2.0.
