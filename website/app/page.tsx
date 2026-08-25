@@ -31,13 +31,24 @@ const milestones = [
   ['G5', 'Tapeout window', 'Jul 2027'],
 ];
 
+function ChakraMark() {
+  return (
+    <span className="chakra-mark" aria-hidden="true">
+      <span className="chakra-wheel">
+        {Array.from({ length: 12 }, (_, index) => <i key={index} style={{ transform: `rotate(${index * 30}deg)` }} />)}
+        <b />
+      </span>
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <main>
       <div className="top-rule" />
       <nav className="nav shell" aria-label="Main navigation">
         <a className="wordmark" href="#top" aria-label="India AI Inference Chip v1.0 home">
-          <span className="wordmark-mark"><img src="/iaic-mark.svg" alt="" /></span>
+          <ChakraMark />
           <span className="wordmark-copy"><strong>India AI Inference Chip</strong><small>v1.0 · Open initiative</small></span>
         </a>
         <div className="nav-links">
@@ -86,7 +97,7 @@ export default function Home() {
 
       <section className="open section shell" id="build"><div className="open-topline"><span>04 / The invitation</span><span>Apache-2.0 · Open by default</span></div><div className="open-grid"><h2>Build the full<br /><em>stack with us.</em></h2><div className="open-copy"><p className="lead-copy">Open source is how we move fast. Hardware engineers, verification specialists, RISC-V developers, compiler builders, AI researchers, FPGA makers, educators and storytellers can all contribute from day one.</p><p>You can join from Bengaluru, Hyderabad, Delhi, anywhere in India or anywhere in the world. Start with a test, a document, a benchmark, a design review or a new idea. The project is an open-source initiative of RDP, built in public with contributors worldwide.</p><div className="open-actions"><a className="button button-light" href={githubUrl} target="_blank" rel="noreferrer">Join on GitHub <span aria-hidden="true">↗</span></a><a className="text-link light-link" href="mailto:vicky@rdp.in">Contact the project steward <span aria-hidden="true">↗</span></a></div></div></div><div className="contributor-line"><span className="contributor-pulse" /> Developers · universities · startups · industry · public institutions · curious minds</div></section>
 
-      <footer className="footer shell"><div className="footer-brand"><span className="wordmark-mark"><img src="/iaic-mark.svg" alt="" /></span><div><strong>India AI Inference Chip v1.0</strong><small>Open-source initiative of RDP · भारत से · दुनिया के लिए</small></div></div><div className="footer-links"><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.rdp.in/" target="_blank" rel="noreferrer">RDP ↗</a><a href="mailto:vicky@rdp.in">vicky@rdp.in</a><span>Apache-2.0</span></div><div className="make-in-india"><span>Designed for a sovereign AI future</span><img src="/make-in-india.png" alt="Make in India lion logo" /></div></footer>
+      <footer className="footer shell"><div className="footer-brand"><ChakraMark /><div><strong>India AI Inference Chip v1.0</strong><small>Open-source initiative of RDP · भारत से · दुनिया के लिए</small></div></div><div className="footer-links"><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.rdp.in/" target="_blank" rel="noreferrer">RDP ↗</a><a href="mailto:vicky@rdp.in">vicky@rdp.in</a><span>Apache-2.0</span></div><div className="make-in-india"><span>Designed for a sovereign AI future</span><img src="/make-in-india.png" alt="Make in India lion logo" /></div></footer>
     </main>
   );
 }
