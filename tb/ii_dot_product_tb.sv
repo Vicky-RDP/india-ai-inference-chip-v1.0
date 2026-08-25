@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright 2026 India Inference Chip contributors
+// Copyright 2026 India AI Inference Chip v1.0 contributors
 
 module ii_dot_product_tb;
     localparam int LANES = 4;
