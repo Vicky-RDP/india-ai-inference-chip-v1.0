@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Hind, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 
-const hind = Hind({ variable: '--font-hind', subsets: ['latin', 'devanagari'], display: 'swap' });
-const plexMono = IBM_Plex_Mono({ variable: '--font-plex-mono', subsets: ['latin'], display: 'swap' });
+const hind = Hind({ variable: '--font-hind', subsets: ['latin', 'devanagari'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
+const plexMono = IBM_Plex_Mono({ variable: '--font-plex-mono', subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rdp.in/iaic'),
