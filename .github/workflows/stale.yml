@@ -13,7 +13,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@5bef64f19d7facfb25b37b414482c7164d639639 # v9
         with:
           repo-token: \${{ secrets.GITHUB_TOKEN }}
           days-before-stale: 45
@@ -23,4 +23,3 @@ jobs:
           close-issue-message: 'Closing for now due to inactivity. Please reopen or create a fresh issue when there is new evidence or a clear next step.'
           exempt-issue-labels: 'tapeout-critical,blocked,security'
           exempt-pr-labels: 'tapeout-critical,blocked,security'
-

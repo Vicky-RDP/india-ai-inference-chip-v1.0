@@ -29,17 +29,19 @@ sudo apt-get install python3 make iverilog
 ```bash
 git clone https://github.com/Vicky-RDP/india-ai-inference-chip-v1.0.git
 cd india-ai-inference-chip-v1.0
-make reference
-make test
+make ci
 ```
 
-The reference model defines the expected arithmetic. The RTL testbench checks the hardware implementation against known vectors.
+The complete gate runs the reference model, unit tests, directed RTL tests,
+256 deterministic randomized RTL vectors, and syntax lint. The randomized
+cross-check uses seed `20260826`; failures print the vector index and expected
+value so another contributor can reproduce them.
 
 ## 3. Pick a contribution
 
 Good first contributions include:
 
-- Add edge-case vectors to the reference model and testbench.
+- Extend the randomized reference-model cross-check with new edge cases.
 - Add Verilator linting to CI.
 - Document signed arithmetic and overflow behavior.
 - Add a streaming valid/ready wrapper.

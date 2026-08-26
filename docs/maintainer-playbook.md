@@ -14,9 +14,10 @@ technical quality, and contributor safety—not to gatekeep expertise.
 
 ## Pull request policy
 
-- Require one approval for documentation and tooling.
-- Require two approvals for RTL, numeric behavior, public interfaces, security,
-  licensing, or tapeout-critical changes.
+- Require one approval for every pull request while the project has one active
+  maintainer. Once a second qualified maintainer exists, require two approvals
+  for RTL, numeric behavior, public interfaces, security, licensing, or
+  tapeout-critical changes.
 - Require the affected CODEOWNERS group to review its workstream.
 - Never merge with failing required checks or unexplained waivers.
 - Prefer small PRs. Split refactors from behavior changes.
@@ -53,4 +54,3 @@ Repository administrators should enable:
 The repository contains policy-as-code for the parts GitHub can enforce from
 source. Account-level invitations, branch protection, Discussions categories,
 and team membership still require an administrator with GitHub permissions.
-

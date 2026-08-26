@@ -1,4 +1,4 @@
-.PHONY: test test-stream reference unit lint ci clean
+.PHONY: test test-stream reference unit random-test lint ci clean
 
 SIM ?= iverilog
 SIM_FLAGS ?= -g2012 -Wall
@@ -24,11 +24,14 @@ reference:
 unit:
 	python3 -m unittest discover -s tools -p 'test_*.py'
 
+random-test:
+	python3 tools/test_rtl_random.py
+
 lint:
 	$(SIM) $(SIM_FLAGS) -s ii_dot_product -t null rtl/ii_dot_product.sv
 	$(SIM) $(SIM_FLAGS) -s ii_dot_product_stream -t null rtl/ii_dot_product_stream.sv
 
-ci: reference unit test test-stream lint
+ci: reference unit test test-stream random-test lint
 
 clean:
 	rm -rf $(BUILD_DIR)
