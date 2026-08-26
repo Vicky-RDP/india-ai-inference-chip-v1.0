@@ -27,6 +27,9 @@
 - name: needs-triage
   color: fbca04
   description: New item awaiting maintainer triage
+- name: ready
+  color: 0e8a16
+  description: Scoped and ready for implementation
 - name: blocked
   color: d93f0b
   description: Waiting on a dependency or decision
@@ -36,4 +39,3 @@
 - name: design discussion
   color: cfd3d7
   description: Needs public technical discussion before implementation
-

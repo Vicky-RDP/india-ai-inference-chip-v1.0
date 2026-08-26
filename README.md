@@ -47,11 +47,10 @@ This is an early project. It is not yet production silicon, a commercial product
 ## Start contributing today
 
 1. Read [GETTING_STARTED.md](GETTING_STARTED.md).
-2. Run the reference model and RTL testbench:
+2. Run the complete local verification gate:
 
    ```bash
-   make reference
-   make test
+   make ci
    ```
 
 3. Choose a workstream in [docs/workstreams.md](docs/workstreams.md).
