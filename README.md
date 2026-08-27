@@ -22,7 +22,7 @@ RISC-V host + inference accelerator
 FPGA prototype -> open ASIC implementation -> developer hardware
 ```
 
-The first milestone is a portable signed INT8 dot-product engine. It is deliberately small so that contributors can get started immediately while we build toward tiled matrix multiplication, memory systems, model tooling, and eventually a fabricated chip.
+The first milestone is now a portable signed INT8 inference processor slice built around a dot-product engine. It is deliberately small so that contributors can get started immediately while we build toward tiled matrix multiplication, memory systems, model tooling, and eventually a fabricated chip.
 
 ## Why open source?
 
@@ -37,8 +37,10 @@ The first milestone is a portable signed INT8 dot-product engine. It is delibera
 - Signed INT8 activations and weights
 - 32-bit accumulation
 - Parameterized 16-lane dot-product core
+- Control/status CSR interface with sticky completion and interrupt
+- Ready/valid command and result streams with backpressure
 - Portable SystemVerilog RTL
-- Self-checking RTL testbench
+- Self-checking RTL testbenches
 - Python bit-accurate reference model
 - FPGA-first development, followed by an open ASIC path
 
