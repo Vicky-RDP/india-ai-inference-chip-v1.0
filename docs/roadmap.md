@@ -28,7 +28,7 @@ The roadmap is intentionally public and adjustable. Issues and design discussion
 
 - [x] Add configurable matrix-multiply tiling
 - [x] Add scratchpad SRAM primitive
-- [ ] Add scratchpad DMA
+- [x] Add linear scratchpad DMA reader
 - [x] Define a stable command interface
 - [ ] Run a small ONNX model end to end
 

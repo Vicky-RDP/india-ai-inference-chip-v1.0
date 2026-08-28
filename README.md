@@ -74,6 +74,7 @@ tools/                  Reference models and developer utilities
 firmware/               Portable C host-driver integration spike
 docs/                   Architecture, roadmap, workstreams, and decisions
 formal/                 Optional SymbiYosys stream-safety harnesses
+benchmark/              Benchmark methodology is in docs/benchmark.md
 fpga/                   Board-neutral FPGA integration and target scaffolds
 .github/                CI, issue forms, pull request guidance, and ownership
 website/                Public project website and deployment source

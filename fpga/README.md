@@ -17,6 +17,9 @@ clock/reset, connect a host-facing bus, and add pin constraints.
 6. Record the board, tool versions, clock constraints, utilization, timing,
    and measured latency in a dated report before making performance claims.
 
+The board-neutral preflight is available as `make fpga-smoke`; it exercises the
+MMIO, matrix, scratchpad, and DMA paths before hardware-specific work begins.
+
 ## Board target acceptance criteria
 
 Each target should document these facts before being considered supported:

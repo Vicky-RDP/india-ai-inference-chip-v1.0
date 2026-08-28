@@ -44,6 +44,8 @@ Its packed tensor and output ordering are defined in
 [matrix-tile.md](matrix-tile.md), with a matching Python golden model.
 The first word-addressed memory boundary is documented in
 [memory-interface.md](memory-interface.md).
+The initial linear transport contract is documented in
+[dma-interface.md](dma-interface.md).
 
 ## Processor slice contract
 
