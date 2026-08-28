@@ -2,7 +2,12 @@
 
 ## Scope
 
-The first hardware milestone is a portable INT8 dot-product primitive. It is not yet a complete neural-network accelerator. Keeping the first block small lets us establish bit-accurate behavior, verification, synthesis, and FPGA integration before adding architectural complexity.
+The first hardware milestone is a portable INT8 compute path. The repository
+now includes the dot-product primitive, a queued inference processor, and a
+board-neutral MMIO adapter. It is not yet a complete neural-network
+accelerator. Keeping each block small lets us establish bit-accurate behavior,
+verification, synthesis, and FPGA integration before adding architectural
+complexity.
 
 ## Numeric contract
 
@@ -25,18 +30,28 @@ backpressure is asserted. The corresponding testbench covers reset, signed edge
 values, acceptance, and a stalled consumer.
 
 `rtl/ii_inference_processor.sv` is the first control-and-compute processor
-slice. It combines the stream wrapper with a small CSR interface that a future
-RISC-V host, DMA engine, or FPGA shell can drive. It is intentionally not a
-general-purpose CPU or a complete NPU yet; it establishes the first stable
-software-visible execution contract.
+slice. It combines a parameterized command FIFO with the stream wrapper and a
+small CSR interface that a future RISC-V host, DMA engine, or FPGA shell can
+drive. It is intentionally not a general-purpose CPU or a complete NPU yet;
+it establishes the first stable software-visible execution contract.
+
+The next compute boundary is `ii_matrix_tile_stream`: a streamed M×N output
+tile with K INT8 reduction terms per output. It keeps the same signed INT8 and
+signed accumulator contract while making tensor layout explicit for the future
+scratchpad and DMA work.
+
+Its packed tensor and output ordering are defined in
+[matrix-tile.md](matrix-tile.md), with a matching Python golden model.
+The first word-addressed memory boundary is documented in
+[memory-interface.md](memory-interface.md).
 
 ## Processor slice contract
 
 The command interface accepts one packed activation vector and one packed
-weight vector when `cmd_valid && cmd_ready` is true. The result is presented
-through `result_valid`, `result_ready`, and `result`; it remains stable while
-the consumer applies backpressure. Only one result can be in flight in this
-first implementation.
+weight vector when `cmd_valid && cmd_ready` is true. The command FIFO defaults
+to four entries; the compute output remains a one-entry elastic result stage.
+The result is presented through `result_valid`, `result_ready`, and `result`;
+it remains stable while the consumer applies backpressure.
 
 CSR requests are single-cycle and always accepted (`csr_ready` is high). A
 response is registered and returned on the following rising edge through
@@ -58,11 +73,11 @@ transaction, is in [processor-interface.md](processor-interface.md).
 
 ## Next architectural steps
 
-1. Expand the processor slice into a command queue and software ABI.
-2. Tile dot products into a matrix-multiply engine.
-3. Add a scratchpad and DMA path.
-4. Connect a RISC-V host core and benchmark quantized models.
-5. Add compiler lowering, runtime APIs, and FPGA board support.
+1. Integrate the matrix tile with scratchpad reads and writes.
+2. Add a DMA contract and tensor-stride metadata.
+3. Connect a RISC-V host core and benchmark quantized models.
+4. Add compiler lowering, runtime APIs, and FPGA board support.
+5. Add formal properties for stream stability and FIFO safety.
 
 ## Success metrics
 

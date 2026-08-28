@@ -26,8 +26,9 @@ The roadmap is intentionally public and adjustable. Issues and design discussion
 
 ## Milestone 2 — matrix engine
 
-- [ ] Add configurable matrix-multiply tiling
-- [ ] Add scratchpad SRAM and DMA
+- [x] Add configurable matrix-multiply tiling
+- [x] Add scratchpad SRAM primitive
+- [ ] Add scratchpad DMA
 - [x] Define a stable command interface
 - [ ] Run a small ONNX model end to end
 

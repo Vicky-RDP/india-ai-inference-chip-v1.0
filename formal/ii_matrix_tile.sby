@@ -1,0 +1,14 @@
+[options]
+mode bmc
+depth 12
+
+[engines]
+smtbmc
+
+[script]
+read_verilog -formal -sv rtl/ii_matrix_tile_stream.sv formal/ii_matrix_tile_formal.sv
+prep -top ii_matrix_tile_formal
+
+[files]
+rtl/ii_matrix_tile_stream.sv
+formal/ii_matrix_tile_formal.sv
