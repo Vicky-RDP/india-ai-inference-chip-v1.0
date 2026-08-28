@@ -37,6 +37,10 @@ The complete gate runs the reference model, unit tests, directed RTL tests,
 cross-check uses seed `20260826`; failures print the vector index and expected
 value so another contributor can reproduce them.
 
+If Verilator is installed, `make ci` also runs the optional warning-enabled
+Verilator lint policy. CI remains runnable with only Icarus Verilog, so a new
+contributor is not blocked by installing a second simulator.
+
 ## 3. Pick a contribution
 
 Good first contributions include:
@@ -44,7 +48,8 @@ Good first contributions include:
 - Extend the randomized reference-model cross-check with new edge cases.
 - Add Verilator linting to CI.
 - Document signed arithmetic and overflow behavior.
-- Add a streaming valid/ready wrapper.
+- Add randomized tests around the processor command queue.
+- Add a board-specific FPGA top-level using the MMIO adapter.
 - Add synthesis scripts for a supported FPGA.
 - Improve the onboarding documentation.
 - Review an issue and identify hidden assumptions.

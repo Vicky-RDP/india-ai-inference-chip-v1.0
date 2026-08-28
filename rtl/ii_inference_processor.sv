@@ -10,7 +10,8 @@
 // host, DMA engine, or FPGA shell.
 module ii_inference_processor #(
     parameter int LANES = 16,
-    parameter int ACC_WIDTH = 32
+    parameter int ACC_WIDTH = 32,
+    parameter int CMD_QUEUE_DEPTH = 4
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -51,15 +52,38 @@ module ii_inference_processor #(
     logic core_valid_out;
     logic signed [ACC_WIDTH-1:0] core_result;
     logic [31:0] csr_read_data;
+    localparam int PTR_WIDTH = (CMD_QUEUE_DEPTH <= 1) ? 1 : $clog2(CMD_QUEUE_DEPTH);
+    localparam int COUNT_WIDTH = $clog2(CMD_QUEUE_DEPTH + 1);
+    logic [LANES*8-1:0] activation_fifo [0:CMD_QUEUE_DEPTH-1];
+    logic [LANES*8-1:0] weight_fifo [0:CMD_QUEUE_DEPTH-1];
+    logic [PTR_WIDTH-1:0] write_ptr;
+    logic [PTR_WIDTH-1:0] read_ptr;
+    logic [COUNT_WIDTH-1:0] queue_count;
+    logic compute_valid;
+    logic enqueue;
+    logic dequeue;
+
+    function automatic [PTR_WIDTH-1:0] next_ptr(input logic [PTR_WIDTH-1:0] ptr);
+        begin
+            if (ptr == CMD_QUEUE_DEPTH - 1) begin
+                next_ptr = '0;
+            end else begin
+                next_ptr = ptr + 1'b1;
+            end
+        end
+    endfunction
 
     // The current processor is always available for CSR accesses. The
     // command path is gated by CONTROL.enable; pending results remain visible
     // and consumable even if software disables new command acceptance.
     assign csr_ready = 1'b1;
-    assign cmd_ready = enable && core_ready_in;
+    assign cmd_ready = enable && (queue_count < CMD_QUEUE_DEPTH);
+    assign enqueue = cmd_valid && cmd_ready;
+    assign compute_valid = (queue_count != 0);
+    assign dequeue = compute_valid && core_ready_in;
     assign result_valid = core_valid_out;
     assign result = core_result;
-    assign busy = core_valid_out;
+    assign busy = (queue_count != 0) || core_valid_out;
     assign irq = done && irq_enable;
 
     ii_dot_product_stream #(
@@ -68,14 +92,38 @@ module ii_inference_processor #(
     ) compute_unit (
         .clk        (clk),
         .rst_n      (rst_n),
-        .valid_in   (cmd_valid && enable),
+        .valid_in   (compute_valid),
         .ready_in   (core_ready_in),
-        .activations(cmd_activations),
-        .weights    (cmd_weights),
+        .activations(activation_fifo[read_ptr]),
+        .weights    (weight_fifo[read_ptr]),
         .valid_out  (core_valid_out),
         .ready_out  (result_ready),
         .result     (core_result)
     );
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            write_ptr  <= '0;
+            read_ptr   <= '0;
+            queue_count <= '0;
+        end else begin
+            if (enqueue) begin
+                activation_fifo[write_ptr] <= cmd_activations;
+                weight_fifo[write_ptr] <= cmd_weights;
+                write_ptr <= next_ptr(write_ptr);
+            end
+
+            if (dequeue) begin
+                read_ptr <= next_ptr(read_ptr);
+            end
+
+            case ({enqueue, dequeue})
+                2'b10: queue_count <= queue_count + 1'b1;
+                2'b01: queue_count <= queue_count - 1'b1;
+                default: queue_count <= queue_count;
+            endcase
+        end
+    end
 
     always_comb begin
         csr_read_data = 32'h0000_0000;

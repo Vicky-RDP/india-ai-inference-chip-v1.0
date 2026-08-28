@@ -83,6 +83,22 @@ module ii_inference_processor_tb;
         end
     endtask
 
+    task automatic submit_command(
+        input logic [LANES*8-1:0] activations,
+        input logic [LANES*8-1:0] weights
+    );
+        begin
+            @(negedge clk);
+            cmd_activations = activations;
+            cmd_weights = weights;
+            cmd_valid = 1'b1;
+            if (!cmd_ready) $fatal(1, "processor command queue unexpectedly full");
+            @(posedge clk);
+            #1;
+            cmd_valid = 1'b0;
+        end
+    endtask
+
     initial begin
         repeat (2) @(negedge clk);
         rst_n = 1'b1;
@@ -92,25 +108,39 @@ module ii_inference_processor_tb;
         csr_read_word(4'hc, 32'h0001_0000);
 
         // Submit one signed INT8 command: 1*2 + (-2)*3 + 3*(-4) + (-4)*(-5) = 4.
-        @(negedge clk);
-        cmd_activations = {8'hfc, 8'h03, 8'hfe, 8'h01};
-        cmd_weights = {8'hfb, 8'hfc, 8'h03, 8'h02};
-        cmd_valid = 1'b1;
-        if (!cmd_ready) $fatal(1, "processor should accept a command when enabled");
+        result_ready = 1'b0;
+        submit_command({8'hfc, 8'h03, 8'hfe, 8'h01}, {8'hfb, 8'hfc, 8'h03, 8'h02});
         @(posedge clk);
         #1;
-        cmd_valid = 1'b0;
-        if (!result_valid || !busy) $fatal(1, "result should be pending after command acceptance");
+        if (!result_valid || !busy) $fatal(1, "result should be pending after execution");
         if (result !== 4) $fatal(1, "expected result 4, got %0d", result);
 
-        // Backpressure must preserve the result and prevent another command.
+        // Fill the four-entry command queue while the first result is stalled.
+        submit_command(32'h0000_0001, 32'h0000_0002);
+        submit_command(32'h0000_0001, 32'h0000_0003);
+        submit_command(32'h0000_0001, 32'h0000_0004);
+        submit_command(32'h0000_0001, 32'h0000_0005);
         @(negedge clk);
-        if (cmd_ready) $fatal(1, "processor must stop accepting while result is stalled");
+        if (cmd_ready) $fatal(1, "processor must apply backpressure when queue is full");
         if (result !== 4) $fatal(1, "stalled result changed");
+
+        // Release the consumer and verify FIFO ordering across the queued results.
         result_ready = 1'b1;
         @(posedge clk);
         #1;
-        if (result_valid || busy) $fatal(1, "result should be consumed");
+        if (!result_valid || result !== 2) $fatal(1, "queued result 2 was not delivered");
+        @(posedge clk);
+        #1;
+        if (!result_valid || result !== 3) $fatal(1, "queued result 3 was not delivered");
+        @(posedge clk);
+        #1;
+        if (!result_valid || result !== 4) $fatal(1, "queued result 4 was not delivered");
+        @(posedge clk);
+        #1;
+        if (!result_valid || result !== 5) $fatal(1, "queued result 5 was not delivered");
+        @(posedge clk);
+        #1;
+        if (result_valid || busy) $fatal(1, "all queued results should be consumed");
         if (!done || !irq) $fatal(1, "completion and interrupt should be asserted");
         csr_read_word(4'h4, 32'h0000_0006);
 

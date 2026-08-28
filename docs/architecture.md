@@ -53,6 +53,9 @@ response is registered and returned on the following rising edge through
 result_ready`). `irq` is `done && irq_enable`. A completion in the same cycle
 as a clear wins, so an event cannot be lost.
 
+The complete host-facing contract, including lane packing and an example
+transaction, is in [processor-interface.md](processor-interface.md).
+
 ## Next architectural steps
 
 1. Expand the processor slice into a command queue and software ABI.

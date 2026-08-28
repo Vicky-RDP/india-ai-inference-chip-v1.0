@@ -60,14 +60,13 @@ person's unreviewed work.
 
 ## First 10 issues to open
 
-1. Add randomized streaming regression and seed capture.
-2. Add a ready/valid dot-product wrapper.
-3. Draft tensor layout and scratchpad interface.
-4. Define the v0 register map.
-5. Add Verilator lint and warning policy.
+1. [x] Add randomized streaming regression and seed capture.
+2. [x] Add a ready/valid dot-product wrapper.
+3. [x] Draft the tensor packing contract and host-facing staging interface.
+4. [x] Define the v0 register map.
+5. [x] Add optional Verilator lint and warning policy.
 6. Select two FPGA evaluation boards with cost and availability evidence.
-7. Build a synthesis report workflow.
-8. Prototype an INT8 Python operator API.
-9. Create the first RISC-V host integration spike.
+7. [x] Build a reproducible Yosys synthesis-report workflow.
+8. [x] Prototype an INT8 Python operator API.
+9. [x] Create the first RISC-V-oriented host integration spike.
 10. Compare candidate open PDK/shuttle paths and record assumptions.
-

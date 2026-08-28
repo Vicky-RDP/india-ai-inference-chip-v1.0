@@ -15,11 +15,11 @@ The roadmap is intentionally public and adjustable. Issues and design discussion
 - [x] Define INT8 dot-product numeric contract
 - [x] Add portable RTL and self-checking testbench
 - [x] Add Python reference model
-- [ ] Add continuous integration with an RTL simulator
+- [x] Add continuous integration with an RTL simulator
 
 ## Milestone 1 — FPGA proof of concept
 
-- [ ] Add a streaming wrapper
+- [x] Add a streaming wrapper
 - [ ] Add a LiteX integration target
 - [ ] Run on one low-cost FPGA development board
 - [ ] Publish synthesis and benchmark results
@@ -28,7 +28,7 @@ The roadmap is intentionally public and adjustable. Issues and design discussion
 
 - [ ] Add configurable matrix-multiply tiling
 - [ ] Add scratchpad SRAM and DMA
-- [ ] Define a stable command interface
+- [x] Define a stable command interface
 - [ ] Run a small ONNX model end to end
 
 ## Milestone 3 — open ASIC preparation
